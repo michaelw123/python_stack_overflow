@@ -1,1 +1,1 @@
-Tail Resursion for Python
+Avoid Stack Overflow in Python.
