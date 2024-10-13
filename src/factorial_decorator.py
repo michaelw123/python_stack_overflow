@@ -1,26 +1,27 @@
-class TailRecurseException(Exception):
+class TailCallException(Exception):
   def __init__(self, *args, **kwargs):
     self.args = args
     self.kwargs = kwargs
 
 
 def recurse(*args, **kwargs):
-    raise TailRecurseException(*args, **kwargs)
+    raise TailCallException(*args, **kwargs)
 
 
-def tail_recursive(f):
-  def decorated(*args, **kwargs):
+def tail_call(f):
+  def func(*args, **kwargs):
     while True:
       try:
         return f(*args, **kwargs)
-      except TailRecurseException as r:
+      except TailCallException as r:
         args = r.args
         kwargs = r.kwargs
         continue
 
-  return decorated
-# Normal recursion depth maxes out at 980, this one works indefinitely
-@tail_recursive
+  return func
+
+
+@tail_call
 def factorial(n, accumulator=1):
     if n == 0:
         return accumulator
@@ -28,3 +29,5 @@ def factorial(n, accumulator=1):
 
 
 print(factorial(1000))
+
+#print a very large number
