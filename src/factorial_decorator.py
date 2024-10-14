@@ -1,7 +1,7 @@
 class TailCallException(Exception):
-  def __init__(self, *args, **kwargs):
-    self.args = args
-    self.kwargs = kwargs
+    def __init__(self, *args, **kwargs):
+        self.args = args
+        self.kwargs = kwargs
 
 
 def recurse(*args, **kwargs):
@@ -9,16 +9,16 @@ def recurse(*args, **kwargs):
 
 
 def tail_call(f):
-  def func(*args, **kwargs):
-    while True:
-      try:
-        return f(*args, **kwargs)
-      except TailCallException as r:
-        args = r.args
-        kwargs = r.kwargs
-        continue
+    def func(*args, **kwargs):
+        while True:
+            try:
+                return f(*args, **kwargs)
+            except TailCallException as r:
+                args = r.args
+                kwargs = r.kwargs
+            continue
 
-  return func
+    return func
 
 
 @tail_call
@@ -30,4 +30,4 @@ def factorial(n, accumulator=1):
 
 print(factorial(1000))
 
-#print a very large number
+# print a very large number
