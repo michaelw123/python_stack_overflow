@@ -12,11 +12,11 @@ def _yields(generator):
             generator = next(generator)
             yields_list.append(generator)
         except StopIteration as e:
-            init_value = e.value
+            final_value = e.value
             break
     yields_list.pop()
     yields_list.reverse()
-    return yields_list, init_value
+    return yields_list, final_value
 
 
 def _eval(value, call):

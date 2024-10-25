@@ -1,11 +1,11 @@
-class TailCallException(Exception):
+class TailRecurseException(Exception):
     def __init__(self, *args, **kwargs):
         self.args = args
         self.kwargs = kwargs
 
 
 def recurse(*args, **kwargs):
-    raise TailCallException(*args, **kwargs)
+    raise TailRecurseException(*args, **kwargs)
 
 
 def tail_call(f):
@@ -13,7 +13,7 @@ def tail_call(f):
         while True:
             try:
                 return f(*args, **kwargs)
-            except TailCallException as r:
+            except TailRecurseException as r:
                 args = r.args
                 kwargs = r.kwargs
             continue
