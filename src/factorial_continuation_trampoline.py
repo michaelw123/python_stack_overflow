@@ -1,8 +1,3 @@
-# https://jtauber.com/blog/2008/03/30/thunks,_trampolines_and_continuation_passing/
-# https://eli.thegreenplace.net/2017/on-recursion-continuations-and-trampolines
-# https://baruchel.github.io/blog/python/2015/07/10/continuation-passing-style-in-python/
-# https://github.com/baruchel/tco
-
 thunk = lambda func, *args: lambda: func(*args)
 def trampoline(func):
     while callable(func):

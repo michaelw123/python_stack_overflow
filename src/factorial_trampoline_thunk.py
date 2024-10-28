@@ -1,6 +1,3 @@
-# https://jtauber.com/blog/2008/03/30/thunks,_trampolines_and_continuation_passing/
-
-
 thunk = lambda func, *args: lambda: func(*args)
 
 
