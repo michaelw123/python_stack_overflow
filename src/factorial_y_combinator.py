@@ -11,14 +11,18 @@ def y_combinator(func):
   return trampoline
 
 
-factorial_y = y( lambda f: lambda n, a: a if not n else f(n-1,a*n) )
+factorial_y = y(lambda f: lambda n, a: a if not n else f(n-1,a*n) )
 print(factorial_y(4,1))
 
 factorial_y_trampoline = y_combinator(lambda f: lambda n, a: a if not n else f(n-1,a*n))
-print(factorial_y_trampoline(1000,1))
+print(factorial_y_trampoline(1000, 1))
 
-fibonacci = y_combinator(lambda f: lambda n,p,q: p if not n else f(n-1,q,p+q))
+fibonacci_y_trampoline = y_combinator(lambda f: lambda n,p,q: p if not n else f(n-1,q,p+q))
 
-print(fibonacci(1000, 0, 1))
+print(fibonacci_y_trampoline(1000, 0, 1))
 
+
+is_even_y_trampoline = y_combinator(lambda f: lambda n, p: p if not n else f(n-1, not p))
+
+print(is_even_y_trampoline(1000, True))
 
